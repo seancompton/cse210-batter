@@ -1,6 +1,6 @@
 import sys
 from game import constants
-import raylibpy
+import pyray
 
 class OutputService:
     """Outputs the game state. The responsibility of the class of objects is to draw the game state on the terminal. 
@@ -24,8 +24,8 @@ class OutputService:
         """
         Opens a new window with the provided title.
         """
-        raylibpy.init_window(constants.MAX_X, constants.MAX_Y, title)
-        raylibpy.set_target_fps(constants.FRAME_RATE)
+        pyray.init_window(constants.MAX_X, constants.MAX_Y, title)
+        pyray.set_target_fps(constants.FRAME_RATE)
         
     def clear_screen(self):
         """Clears the Asciimatics buffer in preparation for the next rendering.
@@ -33,25 +33,25 @@ class OutputService:
         Args:
             self (OutputService): An instance of OutputService.
         """ 
-        raylibpy.begin_drawing()
-        raylibpy.clear_background(raylibpy.BLACK)
+        pyray.begin_drawing()
+        pyray.clear_background(pyray.BLACK)
 
     def draw_box(self, x, y, width, height):
         """
         Draws at rectangular box with the provided specifications.
         """
-        raylibpy.draw_rectangle(x, y, width, height, raylibpy.BLUE)
+        pyray.draw_rectangle(x, y, width, height, pyray.BLUE)
 
     def draw_text(self, x, y, text, is_dark_text):
         """
         Outputs the provided text at the desired location.
         """
-        color = raylibpy.WHITE
+        color = pyray.WHITE
 
         if is_dark_text:
-            color = raylibpy.BLACK
+            color = pyray.BLACK
 
-        raylibpy.draw_text(text, x + 5, y + 5, constants.DEFAULT_FONT_SIZE, color)
+        pyray.draw_text(text, x + 5, y + 5, constants.DEFAULT_FONT_SIZE, color)
 
     def draw_image(self, x, y, image):
         """
@@ -59,11 +59,11 @@ class OutputService:
         """
         if image not in self._textures.keys():
 
-            loaded = raylibpy.load_texture(image)
+            loaded = pyray.load_texture(image)
             self._textures[image] = loaded
 
         texture = self._textures[image]
-        raylibpy.draw_texture(texture, x, y, raylibpy.WHITE)
+        pyray.draw_texture(texture, x, y, pyray.WHITE)
 
     def draw_actor(self, actor):
         """Renders the given actor's text on the screen.
@@ -104,4 +104,4 @@ class OutputService:
         Args:
             self (OutputService): An instance of OutputService.
         """ 
-        raylibpy.end_drawing()
+        pyray.end_drawing()

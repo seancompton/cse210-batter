@@ -1,6 +1,6 @@
 from time import sleep
 
-import raylibpy
+import pyray
 from game import constants
 
 class Director:
@@ -34,13 +34,13 @@ class Director:
             self._cue_action("output")
 
             # TODO: Add some logic like the following to handle game over conditions
-            # if len(self._cast["balls"]) == 0:
-            #     # Game over
-            #     self._keep_playing = False
-
-            if raylibpy.window_should_close():
+            print(self._cast["balls"])
+            if len(self._cast["balls"]) == 0:
+                # Game over
                 self._keep_playing = False
 
+            if pyray.window_should_close():
+                self._keep_playing = False
 
     def _cue_action(self, tag):
         """Executes the actions with the given tag.
